@@ -11,21 +11,22 @@ export default{
         }
     },
     actions: {
-        viewProducts({commit}){
-            return axios.get('/api/product').then(({data}) =>{
-                commit('SET_PRODUCT', data)
-            })
+        productEdit({ state }, id){
+            // do something with state.someValue and the arg
+            return state.product.find(f => f.id == id)
+         },
+        async viewProducts({commit}){
+            const { data } = await axios.get('/api/product');
+            commit('SET_PRODUCT', data);
         },
-        newProduct({commit}, product){
-            return axios.post('/api/product/add', product).then(res => {
-                console.log(res.data)
-                commit('NEW_PRODUCT', product)
-            })
+        async newProduct({commit}, product){
+            const res = await axios.post('/api/product/add', product);
+            console.log(res.data);
+            commit('NEW_PRODUCT', product);
         },
-        removeProduct({commit}, id){
-            return axios.delete('/api/product/delete/'+id).then(res => {
-                commit('DELETE_PRODUCT', id)
-            })
+        async removeProduct({commit}, id){
+            const res = await axios.delete('/api/product/delete/' + id);
+            commit('DELETE_PRODUCT', id);
         },
         async updateProduct({commit}, product){
             // return axios.put('/api/product/'+id).then(res =>{

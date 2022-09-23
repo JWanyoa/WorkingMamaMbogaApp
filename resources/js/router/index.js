@@ -4,6 +4,7 @@ import store from '@/store'
 /* Guest Component */
 const Login = () => import('@/components/Login.vue')
 const Register = () => import('@/components/Register.vue')
+const Home = () => import('@/components/Home.vue')
 /* Guest Component */
 
 /* Layouts */
@@ -18,7 +19,18 @@ const EditCategory = () => import('@/components/categories/EditCategory.vue')
 
 const AddProduct = () => import('@/components/products/AddProducts.vue')
 const ViewProduct = () => import('@/components/products/ViewProducts.vue')
-const EditProduct = () => import('@/components/products/EditProducts.vue')
+const EditProduct = () => import('@/components/products/EditProduct.vue')
+
+const AddSupplier = () => import('@/components/suppliers/AddSuppliers.vue')
+const ViewSupplier = () => import('@/components/suppliers/ViewSuppliers.vue')
+const EditSupplier = () => import('@/components/suppliers/EditSupplier.vue')
+
+const AddCustomer = () => import('@/components/customers/AddCustomers.vue')
+// const ViewCustomer = () => import('@/components/suppliers/ViewSCustomer.vue')
+// const EditCustomer = () => import('@/components/suppliers/EditCustomer.vue')
+
+const AddOrder = () => import('@/components/orders/AddOrders.vue')
+const ViewOrder = () => import('@/components/orders/ViewOrders.vue')
 /* Authenticated Component */
 
 
@@ -42,7 +54,16 @@ const routes = [
         }
     },
     {
+        name: "home",
         path: "/",
+        component: Home,
+        meta: {
+            middleware: "guest",
+            title: `Home`
+        }
+    },
+    {
+        path: "/dashboard",
         component: DashboardLayout,
         meta: {
             middleware: "auth"
@@ -50,7 +71,7 @@ const routes = [
         children: [
             {
                 name: "dashboard",
-                path: '/',
+                path: '/userdashboard',
                 component: Dashboard,
                 meta: {
                     title: `Dashboard`
@@ -98,12 +119,60 @@ const routes = [
             },
             {
                 name: "editproduct",
-                path: '/products/productedit',
+                path: '/products/productedit/:id',
                 component: EditProduct,
                 meta: {
                     title: `EditProduct`
                 }
-            }
+            },
+            {
+                name: "addsupplier",
+                path: '/suppliers/addsupplier',
+                component: AddSupplier,
+                meta: {
+                    title: `AddSupplier`
+                }
+            },
+            {
+                name: "viewsuppliers",
+                path: '/suppliers/viewsupplier',
+                component: ViewSupplier,
+                meta: {
+                    title: `ViewSupplier`
+                }
+            },
+            {
+                name: "editsupplier",
+                path: '/suppliers/supplieredit/:id',
+                component: EditSupplier,
+                meta: {
+                    title: `EditSupplier`
+                }
+            },
+            {
+                name: "addcustomer",
+                path: '/customers/addcustomer',
+                component: AddCustomer,
+                meta: {
+                    title: `AddCustomer`
+                }
+            },
+            {
+                name: "addorder",
+                path: '/orders/addorder',
+                component: AddOrder,
+                meta: {
+                    title: `AddOrder`
+                }
+            },
+            {
+                name: "vieworders",
+                path: '/suppliers/vieworder',
+                component: ViewOrder,
+                meta: {
+                    title: `ViewOrder`
+                }
+            },
         ]
     }
 ]

@@ -24,13 +24,16 @@ class ProductController extends Controller
       */
      protected function create(ProductStoreRequest $request)
      {
-         return Product::create([
+         $product = Product::create([
             'productname' => $request->productname,
             'productdescription' => $request->productdescription,
             'category_id' => $request->category_id,
+            'supplier_id' => 1,
+            // 'supplier_id' => $request->supplier_id,
             'quantity' => $request->quantity,
             'price' => $request->price,
          ]);
+         return response()->json('Product Data successfully added');
      }
      // edit products
      public function edit($id)
@@ -39,7 +42,7 @@ class ProductController extends Controller
          return response()->json($product);
      }
      // update products
-     public function update($id, ProductStoreRequest $request)
+     public function update($id, Request $request)
      {
          $product = Product::find($id);
          $product->update($request->all());

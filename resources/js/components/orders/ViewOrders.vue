@@ -3,7 +3,7 @@
        <div class="container">
           <div class="card">
              <div class="card-body table-responsive">
-                <h3 class="text-center">All Categories</h3>
+                <h3 class="text-center">All Orders</h3>
                 <br/>
                 <table class="table table-bordered">
                    <thead>
@@ -17,17 +17,17 @@
                       </tr>
                    </thead>
                    <tbody>
-                      <tr v-for="cat in category" :key="cat.id">
-                         <td>{{ cat.id }}</td>
-                         <td>{{ cat.categoryname }}</td>
-                         <td>{{ cat.categorydescription }}</td>
-                         <td>{{ cat.created_at }}</td>
-                         <td>{{ cat.updated_at }}</td>
+                      <tr v-for="ord in order" :key="ord.id">
+                         <td>{{ ord.id }}</td>
+                         <td>{{ ord.ordername }}</td>
+                         <td>{{ ord.orderdescription }}</td>
+                         <td>{{ ord.created_at }}</td>
+                         <td>{{ ord.updated_at }}</td>
                          <td>
                             <div class="btn-group" role="group">
-                               <router-link :to="{name: 'editcategory', params: { id: cat.id }}" class="btn btn-primary">Edit
+                               <router-link :to="{name: 'editorder', params: { id: ord.id }}" class="btn btn-primary">Edit
                                </router-link>
-                               <button class="btn btn-danger" @click="deletecategories(cat.id)">Delete</button>
+                               <button class="btn btn-danger" @click="deletecategories(ord.id)">Delete</button>
                             </div>
                          </td>
                       </tr>
@@ -42,19 +42,19 @@
     import {mapGetters} from 'vuex';
     
     export default {
-        name: 'viewcategories',
+        name: 'vieworders',
         data() {
             return {}
         },
         computed: {
-        ...mapGetters(["category"])
+        ...mapGetters(["order"])
         },
         created() {
-            this.$store.dispatch("viewCategories")
+            this.$store.dispatch("viewOrders")
         },
         methods: {
             deletecategories(id) {
-               this.$store.dispatch("removeCategory", id)
+               this.$store.dispatch("removeOrder", id)
             }
         }
     }

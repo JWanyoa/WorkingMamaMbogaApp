@@ -11,7 +11,7 @@
                 </div>
              </div>
           </div>
-          <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+          <p class="text-gray font-weight-bold text-uppercase px-3 small pb-2 mb-0">Main</p>
           <ul class="nav flex-column bg-white mb-0">
              <li class="nav-item">
                 <router-link class="nav-link text-dark" :to="{name:'dashboard'}"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i>Home</router-link>
@@ -20,24 +20,35 @@
                 <!-- <router-link class="nav-link text-dark" :to="{name:'viewcategory'}"><i class="fa fa-plus mr-3 text-primary fa-fw"></i>View Categories</router-link> -->
              </li>
              <li class="nav-item">
-                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseCategories" role="button" aria-expanded="false" aria-controls="collapseCategories">
                      <i class="fa fa-list-alt mr-3 text-primary fa-fw"></i> Categories
                   </a>
-               <div class="collapse" id="collapseExample">
+               <div class="collapse" id="collapseCategories">
                   <div class="bg-light">
-                     <router-link class="nav-link text-dark ml-3" :to="{name:'addcategory'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Product Category</router-link>
-                     <router-link class="nav-link text-dark ml-3" :to="{name:'viewcategories'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Product Category</router-link>
+                     <router-link class="nav-link text-dark ml-3" :to="{name:'addcategory'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Category</router-link>
+                     <router-link class="nav-link text-dark ml-3" :to="{name:'viewcategories'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Categories</router-link>
                   </div>
                </div>
              </li>
              <li class="nav-item">
-                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                     <i class="fa fa-list mr-3 text-primary fa-fw"></i> Products
+                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseProducts" role="button" aria-expanded="false" aria-controls="collapseProducts">
+                     <i class="fa fa-leaf mr-3 text-primary fa-fw"></i> Products
                   </a>
-               <div class="collapse" id="collapseExample1">
+               <div class="collapse" id="collapseProducts">
                   <div class="bg-light">
                      <router-link class="nav-link text-dark ml-3" :to="{name:'addproduct'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Product</router-link>
                      <router-link class="nav-link text-dark ml-3" :to="{name:'viewproducts'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Products</router-link>
+                  </div>
+               </div>
+             </li>
+             <li class="nav-item">
+                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseSuppliers" role="button" aria-expanded="false" aria-controls="collapseSuppliers">
+                     <i class="fa fa-car mr-3 text-primary fa-fw"></i> Suppliers
+                  </a>
+               <div class="collapse" id="collapseSuppliers">
+                  <div class="bg-light">
+                     <router-link class="nav-link text-dark ml-3" :to="{name:'addsupplier'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Supplier</router-link>
+                     <router-link class="nav-link text-dark ml-3" :to="{name:'viewsuppliers'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Suppliers</router-link>
                   </div>
                </div>
              </li>
@@ -47,19 +58,41 @@
                 Stock List
                 </a>
              </li>
+             </ul>
+             <p class="text-gray font-weight-bold text-uppercase px-3 small py-2 mb-0">Users</p>
+             <ul class="nav flex-column bg-white mb-0">
+             <li class="nav-item">
+                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseCustomers" role="button" aria-expanded="false" aria-controls="collapseCustomers">
+                     <i class="fa fa-users mr-3 text-primary fa-fw"></i> Manage Users
+                  </a>
+                  <div class="collapse" id="collapseCustomers">
+                     <div class="bg-light">
+                        <router-link class="nav-link text-dark ml-3" :to="{name:'addcustomer'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Customer</router-link>
+                        <!-- <router-link class="nav-link text-dark ml-3" :to="{name:'viewsuppliers'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Suppliers</router-link> -->
+                     </div>
+                  </div>
+             </li>
           </ul>
-          <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Statistics</p>
+          <p class="text-gray font-weight-bold text-uppercase px-3 small py-2 mb-0">Actions</p>
+             <ul class="nav flex-column bg-white mb-0">
+             <li class="nav-item">
+                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
+                     <i class="fa fa-sitemap mr-3 text-primary fa-fw"></i> Add Order
+                  </a>
+                  <div class="collapse" id="collapseOrders">
+                     <div class="bg-light">
+                        <router-link class="nav-link text-dark ml-3" :to="{name:'addorder'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Orders</router-link>
+                        <router-link class="nav-link text-dark ml-3" :to="{name:'vieworders'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Orders</router-link>
+                     </div>
+                  </div>
+             </li>
+          </ul>
+          <p class="text-gray font-weight-bold text-uppercase px-3 small py-2 mb-0">Statistics</p>
           <ul class="nav flex-column bg-white mb-0">
              <li class="nav-item">
                 <a href="#" class="nav-link text-dark ">
                 <i class="fa fa-usd mr-3 text-primary fa-fw"></i>
                 Invoices
-                </a>
-             </li>
-             <li class="nav-item">
-                <a href="#" class="nav-link text-dark ">
-                <i class="fa fa-sitemap mr-3 text-primary fa-fw"></i>
-                Orders
                 </a>
              </li>
              <li class="nav-item">
@@ -110,7 +143,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4" @click="toggleClass"><i class="fa fa-hand-o-left mr-2" v-if="isActive==false"></i><i class="fa fa-hand-o-right mr-2" v-else></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
+                        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm mb-4" @click="toggleClass"><i class="fa fa-hand-o-left fa-2x mr-2" v-if="isActive==false"></i><i class="fa fa-hand-o-right fa-2x mr-2" v-else></i></button>
                     </div>
                 </div>
             </div>

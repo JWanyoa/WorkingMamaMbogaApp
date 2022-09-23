@@ -42,7 +42,7 @@
         methods: {
             updatecategory() {
                 this.axios
-                .post(`http://127.0.0.1:8000/api/category/update/${this.$route.params.id}`, this.category)
+                .put(`http://127.0.0.1:8000/api/category/update/${this.$route.params.id}`, this.category)
                 .then((response) => {
                     this.$router.push({name: 'dashboard'});
                 });

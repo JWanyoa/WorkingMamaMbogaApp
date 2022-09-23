@@ -67,6 +67,9 @@
                 user:this.$store.state.auth.user
             }
         },
+        created(){
+         this.$store.dispatch("viewCustomers", "viewUsers", "viewSuppliers", "viewCategories","viewProducts","viewOrders")
+        },
         methods:
         {
          

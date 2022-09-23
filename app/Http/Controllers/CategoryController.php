@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
-
+use App\Models\User;
 use App\Http\Requests\CategoryStoreRequest;
 
 use Illuminate\Support\Facades\Validator;
@@ -20,6 +19,11 @@ class CategoryController extends Controller
         return $categories;
     }
 
+    public function usersAll()
+    {
+        $users = User::all();
+        return $users;
+    }
     /**
      * Create a new category instance
      *
@@ -28,10 +32,11 @@ class CategoryController extends Controller
      */
     protected function create(CategoryStoreRequest $request)
     {
-        return Category::create([
+        $category = Category::create([
             'categoryname' => $request->categoryname,
             'categorydescription' => $request->categorydescription
         ]);
+        return response()->json(['success', 'Category Data successfully added']);
     }
     // edit categories
     public function edit($id)

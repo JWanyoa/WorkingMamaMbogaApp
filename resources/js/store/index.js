@@ -3,6 +3,9 @@ import createPersistedState from 'vuex-persistedstate'
 import auth from '@/store/auth'
 import category from '@/store/category'
 import product from '@/store/product'
+import supplier from '@/store/supplier'
+import customer from '@/store/customer'
+import order from '@/store/order'
 
 const store = createStore({
     plugins:[
@@ -11,7 +14,10 @@ const store = createStore({
     modules:{
         auth,
         category,
-        product
+        product,
+        supplier,
+        customer,
+        order
     }
 })
 

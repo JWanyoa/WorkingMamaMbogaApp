@@ -4,13 +4,22 @@ import router from "@/router";
 export default{
     state: {
         category: [],
+        users:[],
     },
     getters: {
         category(state) {
             return state.category
+        },
+        users(state)
+        {
+            return state.users
         }
     },
     actions: {
+        async viewUsers({commit}){
+            const { data } = await axios.get('/api/users');
+            commit('SET_USERS', data);
+        },
         viewCategories({commit}){
             return axios.get('/api/category').then(({data}) =>{
                 commit('SET_CATEGORY', data)
@@ -27,14 +36,14 @@ export default{
                 commit('DELETE_CATEGORY', id)
             })
         },
-        async updateCategory({commit}, category){
+        updateCategory({commit}, {id, cat}){
             // return axios.put('/api/category/'+id).then(res =>{
             //     commit('EDIT_CATEGORY', id)
             // })  
             try {
-                let result = await axios.put("/api/category/edit/"+id, category)
+                let result = axios.post("/api/category/update/"+id, category)
                 console.log(result.response.data)
-                commit('EDIT_CATEGORY', category)
+                commit('EDIT_CATEGORY', {id, cat})
               } catch (error) {
                 console.error(error.response.data);    
               }
@@ -43,6 +52,9 @@ export default{
     mutations: {
         SET_CATEGORY(state, category) {
             state.category = category
+        },
+        SET_USERS (state, value) {
+            state.users = value
         },
         NEW_CATEGORY(state, category) {
             // let categories = state.categories.concat(category)
@@ -54,10 +66,18 @@ export default{
                 return f.id !== id
             })
         },
-        EDIT_CATEGORY(state, category) {
-            const index = state.category.findIndex(f => f.id === category.id)
-            if(index !== -1) {
-                state.category.splice(index, 1, category)
+        EDIT_CATEGORY(state, {id, cat}) {
+            // const index = state.category.findIndex(f => f.id === category.id)
+            // if(index !== -1) {
+            //     state.category.splice(index, 1, category)
+            // }
+            // state.category.find(item => item.id == id) = category
+            state.category.findIndex(f => f.id === id) = cat
+            for (var i = 0; i < category.length; i++) {
+                if(category[i].id == id)
+                {
+                    category = state.category
+                }
             }
         }
     },

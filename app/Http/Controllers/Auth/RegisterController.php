@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -68,7 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'firstname' => $data['firstname'],
             'middlename' => $data['middlename'],
             'lastname' => $data['lastname'],
@@ -77,5 +78,20 @@ class RegisterController extends Controller
             'role' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if($user)
+        {
+            $userdata = $user->where('firstname', $data['firstname']);
+            $user_id = $userdata->value('id');
+            $user_role = $userdata->value('role');
+            if($user_role == 'customer')
+            {
+                $customer = Customer::create([
+                    'user_id' => $user_id
+                ]);
+            }
+        }
+
+        return $user;
     }
 }
