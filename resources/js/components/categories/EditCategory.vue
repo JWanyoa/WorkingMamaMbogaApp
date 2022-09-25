@@ -43,6 +43,11 @@
             updatecategory() {
                 this.axios
                 .put(`http://127.0.0.1:8000/api/category/update/${this.$route.params.id}`, this.category)
+                .then(()=> {
+                    this.$toast.success("Category Edited successfully", {
+                    position: "top"
+                })
+                })
                 .then((response) => {
                     this.$router.push({name: 'dashboard'});
                 });

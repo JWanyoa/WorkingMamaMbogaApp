@@ -84,12 +84,18 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/api/supplier/add',this.supplier).then(response=>{
                 this.validationErrors = {}
+                this.$toast.success("Supplier Details added successfully", {
+                        position: "top"
+                    })
             }).catch(({response})=>{
                 if(response.status===422){
                     this.validationErrors = response.data.errors
                 }else{
                     this.validationErrors = {}
-                    alert(response.data.message)
+                    this.$toast.error(response.data.message, {
+                        position: "top",
+                        duration: 4000
+                    })
                 }
             }).finally(()=>{
                 this.processing = false

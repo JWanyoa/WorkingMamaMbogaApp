@@ -22,7 +22,7 @@
 
                             <div class="form-group col-md-4 mb-4">
                                 <label for="category_id" class="font-weight-bold">Product Category</label>
-                                <select v-if="category.length > 0" v-model="product.category_id" class="form-control" name="category_id" id="category_id" required>
+                                <select v-if="category.length > 0" v-model="product.category_id" class="form-control" name="category_id" id="category_id" required>                                    
                                     <option v-for="cat in category" :key="cat.id" :value="cat.id">{{cat.categoryname}}</option>
                                 </select>
                                 <input v-else type="text" class="form-control" value="No Data Found" disabled>
@@ -85,13 +85,18 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/api/product/add',this.product).then(response=>{
                 this.validationErrors = {}
-                this.viewPrev()
+                this.$toast.success("Product addedd successfully", {
+                    position: "top"
+                })
             }).catch(({response})=>{
                 if(response.status===422){
                     this.validationErrors = response.data.errors
                 }else{
                     this.validationErrors = {}
-                    alert(response.data.message)
+                    this.$toast.error(response.data.message, {
+                        position: "top",
+                        duration: 4000
+                    })
                 }
             }).finally(()=>{
                 this.processing = false

@@ -65,10 +65,10 @@ import { mapGetters } from 'vuex'
                 this.$axios.get('/sanctum/csrf-cookie')
                 this.$axios.put(`http://127.0.0.1:8000/api/supplier/update/${this.$route.params.id}`, this.supplier)
                 .then(response=>{
-                    this.$toast.success("Supplier Details edited successfully", {
-                        position: "top"
-                    })
                     this.$router.push({name: 'dashboard'});
+                    this.$toast.success("Sales edited successfully", {
+                    position: "top"
+                })
                 }).catch(({response})=>{
                     if(response.status===422){
                         this.validationErrors = response.data.errors

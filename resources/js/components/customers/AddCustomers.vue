@@ -52,13 +52,10 @@
                                 <label for="password_confirmation" class="font-weight-bold">Confirm Password</label>
                                 <input type="password" name="password_confirmation" v-model="customer.password_confirmation" id="password_confirmation" placeholder="Enter Password" class="form-control">
                             </div>
-                            <div class="col-12 mb-2">
+                            <div class="col-4 mb-4 mt-2">
                                 <button type="submit" :disabled="processing" class="btn btn-primary btn-block">
-                                    {{ processing ? "Please wait" : "Register" }}
+                                    {{ processing ? "Please wait" : "Add Customer" }}
                                 </button>
-                            </div>
-                            <div class="col-12 text-center">
-                                <label>Already have an account? <router-link :to="{name:'login'}">Login Now!</router-link></label>
                             </div>
                         </form>
                     </div>
@@ -93,13 +90,18 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/api/customer/add',this.customer).then(response=>{
                 this.validationErrors = {}
-                this.$router.push('#')
+                this.$toast.success("Customer addedd successfully", {
+                    position: "top"
+                })
             }).catch(({response})=>{
                 if(response.status===422){
                     this.validationErrors = response.data.errors
                 }else{
                     this.validationErrors = {}
-                    alert(response.data.message)
+                    this.$toast.error(response.data.message, {
+                        position: "top",
+                        duration: 4000
+                    })
                 }
             }).finally(()=>{
                 this.processing = false

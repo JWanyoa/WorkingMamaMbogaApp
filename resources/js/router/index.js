@@ -31,6 +31,7 @@ const AddCustomer = () => import('@/components/customers/AddCustomers.vue')
 
 const AddOrder = () => import('@/components/orders/AddOrders.vue')
 const ViewOrder = () => import('@/components/orders/ViewOrders.vue')
+const EditOrder = () => import('@/components/orders/EditOrder.vue')
 /* Authenticated Component */
 
 
@@ -171,6 +172,14 @@ const routes = [
                 component: ViewOrder,
                 meta: {
                     title: `ViewOrder`
+                }
+            },
+            {
+                name: "editorder",
+                path: '/suppliers/editorder/:id',
+                component: EditOrder,
+                meta: {
+                    title: `EditOrder`
                 }
             },
         ]

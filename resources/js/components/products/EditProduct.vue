@@ -67,6 +67,9 @@
                 .put(`http://127.0.0.1:8000/api/product/update/${this.$route.params.id}`, this.product)
                 .then((response) => {
                     this.$router.push({name: 'viewproduct'});
+                    this.$toast.success("Product Edited successfully", {
+                    position: "top"
+                })
                 });
             }
         }

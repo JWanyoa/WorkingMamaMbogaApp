@@ -9,6 +9,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SalesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -69,4 +70,13 @@ Route::group(['prefix' => 'order'], function () {
     Route::get('edit/{id}', [OrderController::class, 'edit']);
     Route::put('update/{id}', [OrderController::class, 'update']);
     Route::delete('delete/{id}', [OrderController::class, 'delete']);
+});
+
+//Sales routes
+Route::get('sales', [SalesController::class, 'index']);
+Route::group(['prefix' => 'sales'], function () {
+    Route::post('add', [SalesController::class, 'create']);
+    Route::get('edit/{id}', [SalesController::class, 'edit']);
+    Route::put('update/{id}', [SalesController::class, 'update']);
+    Route::delete('delete/{id}', [SalesController::class, 'delete']);
 });

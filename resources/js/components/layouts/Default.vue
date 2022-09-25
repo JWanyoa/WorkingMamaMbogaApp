@@ -2,7 +2,8 @@
     <div>
        <!-- Vertical navbar -->
        <div class="vertical-nav bg-white noclass" :class="{ active: isActive }" id="sidebar">
-          <div class="py-4 px-3 mb-4 bg-light">
+          <div class="mysidebar">
+            <div class="py-4 px-3 mb-4 bg-light">
              <div class="media d-flex align-items-center">
                 <img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                 <div class="media-body">
@@ -77,7 +78,7 @@
              <ul class="nav flex-column bg-white mb-0">
              <li class="nav-item">
                   <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
-                     <i class="fa fa-sitemap mr-3 text-primary fa-fw"></i> Add Order
+                     <i class="fa fa-sitemap mr-3 text-primary fa-fw"></i> Manage Orders
                   </a>
                   <div class="collapse" id="collapseOrders">
                      <div class="bg-light">
@@ -108,6 +109,7 @@
                 </a>
              </li>
           </ul>
+          </div>
        </div>
        <!-- End vertical navbar -->
        <!-- Page content holder -->
@@ -206,6 +208,12 @@
     color: #aaa;
     }
 
+    /* .mysidebar
+    {
+      position: absolute;
+      min-height: 100vh;
+      overflow-y: scroll;
+    } */
     .vertical-nav {
     min-width: 17rem;
     /* width: 17rem; */

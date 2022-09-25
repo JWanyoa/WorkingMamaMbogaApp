@@ -3,7 +3,7 @@
        <div class="container">
           <div class="card">
              <div class="card-body table-responsive">
-                <h3 class="text-center">All Orders</h3>
+                <h3 class="text-center">All Sales</h3>
                 <br/>
                 <table class="table table-bordered">
                    <thead>
@@ -42,7 +42,7 @@
     import {mapGetters} from 'vuex';
     
     export default {
-        name: 'vieworders',
+        name: 'viewsales',
         data() {
             return {}
         },
@@ -50,11 +50,11 @@
         ...mapGetters(["order","users","customer","product"])
         },
         created() {
-            this.$store.dispatch("viewOrders")
+            this.$store.dispatch("viewSales")
         },
         methods: {
-            deletecategories(id) {
-               this.$store.dispatch("removeOrder", id)
+            deletesales(id) {
+               this.$store.dispatch("removeSales", id)
             }
         }
     }
