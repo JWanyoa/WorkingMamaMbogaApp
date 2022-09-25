@@ -35,7 +35,7 @@
                                 <div class="btn-group" role="group">
                                     <router-link :to="{name: 'editproduct', params: { id: prod.id }}" class="btn btn-primary">Edit
                                     </router-link>
-                                    <button type="submit" class="btn btn-danger" @click="deleteproduct(prod.id)">Delete</button>
+                                    <button type="submit" class="btn btn-danger" @click="deleteproduct(prod.id,prod.productname)">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -61,8 +61,24 @@
             this.$store.dispatch("viewProducts")
         },
         methods: {
-                deleteproduct(id) {
-                    this.$store.dispatch("removeProduct", id)
+            deleteproduct(id, productname) {
+                this.$swal({
+                  title: 'Are you sure you want to delete '+productname+' from database?',
+                  text: 'You can\'t revert your action',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes Delete it!',
+                  cancelButtonText: 'No, Keep it!',
+                  showCloseButton: true,
+                  showLoaderOnConfirm: true
+               }).then((result) => {
+                  if(result.value) {
+                     this.$store.dispatch("removeProduct", id)
+                     this.$swal('Deleted', 'You successfully deleted '+productname, 'success')
+                  } else {
+                     this.$swal('Cancelled', 'Your product record is still intact', 'info')
+                  }
+               })
             }
         }
     }

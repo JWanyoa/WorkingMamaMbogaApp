@@ -27,7 +27,7 @@
                             <div class="btn-group" role="group">
                                <router-link :to="{name: 'editorder', params: { id: ord.id }}" class="btn btn-primary">Edit
                                </router-link>
-                               <button class="btn btn-danger" @click="deletecategories(ord.id)">Delete</button>
+                               <button class="btn btn-danger" @click="deleteorders(ord.id)">Delete</button>
                             </div>
                          </td>
                       </tr>
@@ -53,8 +53,24 @@
             this.$store.dispatch("viewOrders")
         },
         methods: {
-            deletecategories(id) {
-               this.$store.dispatch("removeOrder", id)
+            deleteorders(id) {
+               this.$swal({
+                  title: 'Are you sure you want to delete order '+id+'?',
+                  text: 'You can\'t revert your action',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes Delete it!',
+                  cancelButtonText: 'No, Keep it!',
+                  showCloseButton: true,
+                  showLoaderOnConfirm: true
+               }).then((result) => {
+                  if(result.value) {
+                     this.$store.dispatch("removeOrder", id)
+                     this.$swal('Deleted', 'You successfully deleted this record', 'success')
+                  } else {
+                     this.$swal('Cancelled', 'Your record is still intact', 'info')
+                  }
+               })
             }
         }
     }

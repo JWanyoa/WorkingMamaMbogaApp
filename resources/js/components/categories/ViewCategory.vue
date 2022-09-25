@@ -54,7 +54,23 @@
         },
         methods: {
             deletecategories(id) {
-               this.$store.dispatch("removeCategory", id)
+               this.$swal({
+                  title: 'Are you sure you want to delete item?',
+                  text: 'You can\'t revert your action',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes Delete it!',
+                  cancelButtonText: 'No, Keep it!',
+                  showCloseButton: true,
+                  showLoaderOnConfirm: true
+               }).then((result) => {
+                  if(result.value) {
+                     this.$store.dispatch("removeCategory", id)
+                     this.$swal('Deleted', 'You successfully deleted this record', 'success')
+                  } else {
+                     this.$swal('Cancelled', 'Your record is still intact', 'info')
+                  }
+               })
             }
         }
     }

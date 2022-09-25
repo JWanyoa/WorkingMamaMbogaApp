@@ -9,7 +9,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Supplier Name</th>
-                            <th>Supplier Category</th>
+                            <th>Product Category</th>
                             <th>Supplier Description</th>
                             <th>Supplier Phone Number</th>
                             <th>Supplier Address</th>
@@ -33,7 +33,7 @@
                                 <div class="btn-group" role="group">
                                     <router-link :to="{name: 'editsupplier', params: { id: sup.id }}" class="btn btn-primary">Edit
                                     </router-link>
-                                    <button class="btn btn-danger" @click="deletesupplier(sup.id)">Delete</button>
+                                    <button class="btn btn-danger" @click="deletesupplier(sup.id, sup.suppliername)">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -59,8 +59,24 @@
             this.$store.dispatch("viewSuppliers")
         },
         methods: {
-            deletesupplier(id) {
-                this.$store.dispatch("removeSupplier", id)
+            deletesupplier(id, suppliername) {
+                this.$swal({
+                  title: 'Are you sure you want to remove ' + suppliername + '?',
+                  text: 'You can\'t revert your action',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes, Remove Supplier',
+                  cancelButtonText: 'No, Keep Supplier!',
+                  showCloseButton: true,
+                  showLoaderOnConfirm: true
+               }).then((result) => {
+                  if(result.value) {
+                     this.$store.dispatch("removeSupplier", id)
+                     this.$swal('Deleted', 'You successfully removed '+suppliername+' from your Suppliers database', 'success')
+                  } else {
+                     this.$swal('Cancelled', 'Your record is still intact', 'info')
+                  }
+               })
             }
         }
     }

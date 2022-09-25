@@ -7,7 +7,7 @@
                         <h1 class="text-center h4 m-2">Add Supplier</h1>
                     </div>
                     <div class="card-body">
-                        <form action="javascript:void(0)" @submit="addsuppliers" class="row" method="post">
+                        <form ref="myForm" action="javascript:void(0)" @submit="addsuppliers" class="row" method="post">
                             <div class="col-12" v-if="Object.keys(validationErrors).length > 0">
                                 <div class="alert alert-danger">
                                     <ul class="mb-0">
@@ -87,6 +87,7 @@ export default {
                 this.$toast.success("Supplier Details added successfully", {
                         position: "top"
                     })
+                document.getElementById("myForm").reset(); // This will clear that form
             }).catch(({response})=>{
                 if(response.status===422){
                     this.validationErrors = response.data.errors
