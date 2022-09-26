@@ -2,7 +2,7 @@
     <!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
     <div class="py-4 px-3 mb-4 bg-light">
-      <div class="media d-flex align-items-center"><img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media d-flex align-items-center"><img src="/images/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
         <div class="media-body">
           <h4 class="m-0">Njeri Ndungu</h4>
           <p class="font-weight-light text-muted mb-0">Business owner</p>

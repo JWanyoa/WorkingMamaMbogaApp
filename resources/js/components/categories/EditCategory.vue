@@ -32,18 +32,21 @@
 <script>
     export default {
         data() {
-            return {}
+            return {
+                category:{}
+            }
         },
         computed: {
             category(){
-                return this.$store.state.category.category.find(f => f.id == this.$route.params.id)
+                return this.$store.dispatch("editCategories", this.$route.params.id);
             }
         },
         methods: {
             updatecategory() {
                 this.axios
                 .put(`http://127.0.0.1:8000/api/category/update/${this.$route.params.id}`, this.category)
-                .then(()=> {
+                .then((res)=> {
+                    this.product = res.data;
                     this.$toast.success("Category Edited successfully", {
                     position: "top"
                 })

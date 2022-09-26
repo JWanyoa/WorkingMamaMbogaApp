@@ -25,7 +25,7 @@ class SalesStoreRequest extends FormRequest
     {
         return [
             //
-            'order_id' => ['required'],
+            'order_id' => ['required','unique:sales'],
         ];
     }
 }

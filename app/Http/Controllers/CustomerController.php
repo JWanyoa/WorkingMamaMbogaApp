@@ -52,9 +52,9 @@ class CustomerController extends Controller
             $userdata = $user->where('firstname', $request->firstname);
             $user_id = $userdata->value('id');
             $user_role = $userdata->value('role');
-            if($user_role == 'customer')
+            if(strtolower($user_role) == 'customer')
             {
-                $customer = Customer::create([
+                $user = Customer::create([
                     'user_id' => $user_id
                 ]);
             }

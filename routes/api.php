@@ -76,6 +76,7 @@ Route::group(['prefix' => 'order'], function () {
 Route::get('sales', [SalesController::class, 'index']);
 Route::group(['prefix' => 'sales'], function () {
     Route::post('add', [SalesController::class, 'create']);
+    Route::post('view', [SalesController::class, 'viewSales']);
     Route::get('edit/{id}', [SalesController::class, 'edit']);
     Route::put('update/{id}', [SalesController::class, 'update']);
     Route::delete('delete/{id}', [SalesController::class, 'delete']);

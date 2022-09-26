@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete("NO ACTION");
             $table->string('quantity');
+            $table->string('lowestquantity')->default(0);
             $table->string('price');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

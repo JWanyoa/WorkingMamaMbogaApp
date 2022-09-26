@@ -79,7 +79,7 @@ export default {
         ...mapGetters(["category", "customer", "users", "product"])
     },
     created(){
-        this.$store.dispatch("viewUsers")
+        this.$store.dispatch("viewUsers","viewCustomers")
     },
     methods:{
         async addorders(){
@@ -87,7 +87,7 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/api/order/add',this.order).then(response=>{
                 this.validationErrors = {}
-                this.$toast.success("Order addedd successfully", {
+                this.$toast.success("Order added successfully", {
                     position: "top",
                     max:20
                 })

@@ -57,7 +57,7 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/api/category/add',this.category).then(response=>{
                 this.validationErrors = {}
-                this.$toast.success("Category addedd successfully", {
+                this.$toast.success("Category added successfully", {
                     position: "top"
                 })
             }).catch(({response})=>{

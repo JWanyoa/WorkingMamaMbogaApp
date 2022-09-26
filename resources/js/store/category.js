@@ -20,21 +20,22 @@ export default{
             const { data } = await axios.get('/api/users');
             commit('SET_USERS', data);
         },
-        viewCategories({commit}){
-            return axios.get('/api/category').then(({data}) =>{
-                commit('SET_CATEGORY', data)
-            })
+        async viewCategories({commit}){
+            const { data } = await axios.get('/api/category');
+            commit('SET_CATEGORY', data);
         },
-        newCategory({commit}, category){
-            return axios.post('/api/category/add', category).then(res => {
-                console.log(res.data)
-                commit('NEW_CATEGORY', category)
-            })
+        async editCategories({commit}, id){
+            const { data } = await axios.get('/api/category/edit/'+id);
+            commit('SET_EDIT_CATEGORY', data);
         },
-        removeCategory({commit}, id){
-            return axios.delete('/api/category/delete/'+id).then(res => {
-                commit('DELETE_CATEGORY', id)
-            })
+        async newCategory({commit}, category){
+            const res = await axios.post('/api/category/add', category);
+            console.log(res.data);
+            commit('NEW_CATEGORY', category);
+        },
+        async removeCategory({commit}, id){
+            const res = await axios.delete('/api/category/delete/' + id);
+            commit('DELETE_CATEGORY', id);
         },
         updateCategory({commit}, {id, cat}){
             // return axios.put('/api/category/'+id).then(res =>{
@@ -52,6 +53,10 @@ export default{
     mutations: {
         SET_CATEGORY(state, category) {
             state.category = category
+        },
+        SET_EDIT_CATEGORY(state, category_id)
+        {
+            state.category.category.find(f => f.id == category_id) = category
         },
         SET_USERS (state, value) {
             state.users = value

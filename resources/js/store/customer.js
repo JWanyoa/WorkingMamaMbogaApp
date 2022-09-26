@@ -15,16 +15,14 @@ export default{
             const { data } = await axios.get('/api/customer');
             commit('SET_CUSTOMER', data);
         },
-        newCustomer({commit}, customer){
-            return axios.post('/api/customer/add', customer).then(res => {
-                console.log(res.data)
-                commit('NEW_CUSTOMER', customer)
-            })
+        async newCustomer({commit}, customer){
+            const res = await axios.post('/api/customer/add', customer);
+            console.log(res.data);
+            commit('NEW_CUSTOMER', customer);
         },
-        removeCustomer({commit}, id){
-            return axios.delete('/api/customer/delete/'+id).then(res => {
-                commit('DELETE_CUSTOMER', id)
-            })
+        async removeCustomer({commit}, id){
+            const res = await axios.delete('/api/customer/delete/' + id);
+            commit('DELETE_CUSTOMER', id);
         },
         updateCustomer({commit}, {id, cat}){
             // return axios.put('/api/customer/'+id).then(res =>{

@@ -26,12 +26,15 @@ const ViewSupplier = () => import('@/components/suppliers/ViewSuppliers.vue')
 const EditSupplier = () => import('@/components/suppliers/EditSupplier.vue')
 
 const AddCustomer = () => import('@/components/customers/AddCustomers.vue')
-// const ViewCustomer = () => import('@/components/suppliers/ViewSCustomer.vue')
-// const EditCustomer = () => import('@/components/suppliers/EditCustomer.vue')
+const ViewCustomer = () => import('@/components/customers/ViewCustomers.vue')
+// const EditCustomer = () => import('@/components/customers/EditCustomer.vue')
 
 const AddOrder = () => import('@/components/orders/AddOrders.vue')
 const ViewOrder = () => import('@/components/orders/ViewOrders.vue')
 const EditOrder = () => import('@/components/orders/EditOrder.vue')
+
+const AddSales = () => import('@/components/sales/AddSales.vue')
+const ViewSales = () => import('@/components/sales/ViewSales.vue')
 /* Authenticated Component */
 
 
@@ -159,6 +162,14 @@ const routes = [
                 }
             },
             {
+                name: "viewcustomers",
+                path: '/customers/viewcustomers',
+                component: ViewCustomer,
+                meta: {
+                    title: `ViewCustomer`
+                }
+            },
+            {
                 name: "addorder",
                 path: '/orders/addorder',
                 component: AddOrder,
@@ -180,6 +191,22 @@ const routes = [
                 component: EditOrder,
                 meta: {
                     title: `EditOrder`
+                }
+            },
+            {
+                name: 'addsales',
+                path: '/sales/addsales',
+                component: AddSales,
+                meta:{
+                    title: `AddSales`
+                }
+            },
+            {
+                name: "viewsales",
+                path: '/sales/viewsales',
+                component: ViewSales,
+                meta: {
+                    title: `ViewSales`
                 }
             },
         ]

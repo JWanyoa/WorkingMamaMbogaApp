@@ -3,7 +3,26 @@
         <div class="container">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <h3 class="text-center">All Products in Stock</h3><br/>
+                    
+                    <h3 class="text-center">All Products in Stock</h3>
+                    <div class="row mt-2 mb-4">
+                        <div class="col-md-9 mx-auto">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <h4 class="alert-heading"><span class="fa fa-exclamation-circle"></span> &nbsp; Warning!!</h4>
+                                <hr>
+                                <span>
+                                    <span v-for="pro in product" :key="pro.id">
+                                        <span v-if="pro.quantity<pro.lowestquantity">
+                                            <ul>
+                                                <li>Please add more <b class="font-weight-bold">{{pro.productname}}</b> in stock</li>
+                                            </ul>
+                                        </span>
+                                    </span>
+                                </span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -82,5 +101,9 @@
             }
         }
     }
-
 </script>
+<style scoped>
+ul.alert{
+    list-style: none;
+}
+</style>

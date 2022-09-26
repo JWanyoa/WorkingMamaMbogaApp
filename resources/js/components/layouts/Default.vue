@@ -5,7 +5,7 @@
           <div class="mysidebar">
             <div class="py-4 px-3 mb-4 bg-light">
              <div class="media d-flex align-items-center">
-                <img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                <img src="/images/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                 <div class="media-body">
                    <h4 class="m-0">&nbsp; <b>{{user.firstname}} {{user.lastname}}</b></h4>
                    <p class="font-weight-light text-muted mb-0">&nbsp;  {{user.role}}</p>
@@ -69,7 +69,7 @@
                   <div class="collapse" id="collapseCustomers">
                      <div class="bg-light">
                         <router-link class="nav-link text-dark ml-3" :to="{name:'addcustomer'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Customer</router-link>
-                        <!-- <router-link class="nav-link text-dark ml-3" :to="{name:'viewsuppliers'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Suppliers</router-link> -->
+                        <router-link class="nav-link text-dark ml-3" :to="{name:'viewcustomers'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Customers</router-link>
                      </div>
                   </div>
              </li>
@@ -87,6 +87,17 @@
                      </div>
                   </div>
              </li>
+             <li class="nav-item">
+                  <a class="nav-link collapsed text-dark" data-toggle="collapse" href="#collapseSales" role="button" aria-expanded="false" aria-controls="collapseCustomers">
+                     <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i> Manage Sales
+                  </a>
+                  <div class="collapse" id="collapseSales">
+                     <div class="bg-light">
+                        <router-link class="nav-link text-dark ml-3" :to="{name:'addsales'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>Add Sales</router-link>
+                        <router-link class="nav-link text-dark ml-3" :to="{name:'viewsales'}"><i class="fa fa-plus mr-1 text-primary fa-fw"></i>View Sales</router-link>
+                     </div>
+                  </div>
+             </li>
           </ul>
           <p class="text-gray font-weight-bold text-uppercase px-3 small py-2 mb-0">Statistics</p>
           <ul class="nav flex-column bg-white mb-0">
@@ -97,15 +108,11 @@
                 </a>
              </li>
              <li class="nav-item">
+               </li>
+             <li class="nav-item mb-4">
                 <a href="#" class="nav-link text-dark ">
-                <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
-                  Sales
-                </a>
-             </li>
-             <li class="nav-item">
-                <a href="#" class="nav-link text-dark ">
-                <i class="fa fa-money mr-3 text-primary fa-fw"></i>
-                Debts
+                <i class="fa fa-sign-out mr-3 text-primary fa-fw"></i>
+                Logout
                 </a>
              </li>
           </ul>
@@ -215,16 +222,17 @@
       overflow-y: scroll;
     } */
     .vertical-nav {
+    position: absolute;
     min-width: 17rem;
     /* width: 17rem; */
     min-height: 100vh;
-    position: fixed;
     top: 0;
     left: 0;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.4s;
     }
     .page-content {
+      position: fixed;
     width: calc(100% - 17rem);
     margin-left: 17rem;
     transition: all 0.4s;

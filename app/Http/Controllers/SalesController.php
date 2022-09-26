@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sales;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\SalesStoreRequest;
 class SalesController extends Controller
 {
      // all sales
@@ -27,6 +29,7 @@ class SalesController extends Controller
          ]);
          return response()->json('Sales successfully made');
      }
+
      // edit sales
      public function edit($id)
      {

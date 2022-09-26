@@ -15,6 +15,7 @@ class Product extends Model
         'supplier_id',
         'productdescription',
         'quantity',
+        'lowestquantity',
         'price',
     ];
 }

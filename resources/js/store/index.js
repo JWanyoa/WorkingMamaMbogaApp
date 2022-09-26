@@ -6,6 +6,7 @@ import product from '@/store/product'
 import supplier from '@/store/supplier'
 import customer from '@/store/customer'
 import order from '@/store/order'
+import sales from '@/store/sales'
 
 const store = createStore({
     plugins:[
@@ -17,7 +18,8 @@ const store = createStore({
         product,
         supplier,
         customer,
-        order
+        order,
+        sales
     }
 })
 

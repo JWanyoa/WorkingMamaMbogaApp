@@ -31,6 +31,7 @@ class ProductController extends Controller
             'supplier_id' => 1,
             // 'supplier_id' => $request->supplier_id,
             'quantity' => $request->quantity,
+            'lowestquantity' => $request->lowestquantity,
             'price' => $request->price,
          ]);
          return response()->json('Product Data successfully added');

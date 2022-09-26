@@ -41,7 +41,10 @@
 
                             <div class="form-group col-md-4 my-2">
                                 <label for="role" class="font-weight-bold">Role</label>
-                                <input type="text" id="role" class="form-control" name="role" v-model="customer.role" required autocomplete="role">
+                                <select type="text" id="role" class="form-control" name="role" v-model="customer.role" required autocomplete="role">
+                                    <option value="admin">Administrator</option>
+                                    <option value="customer">Customer</option>
+                                </select>
                             </div>
                             <div class="form-group col-12">
                                 <label for="password" class="font-weight-bold">Password</label>
@@ -90,7 +93,7 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/api/customer/add',this.customer).then(response=>{
                 this.validationErrors = {}
-                this.$toast.success("Customer addedd successfully", {
+                this.$toast.success("Customer added successfully", {
                     position: "top"
                 })
             }).catch(({response})=>{

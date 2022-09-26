@@ -20,7 +20,7 @@
                             <input id="productname" type="text" class="form-control" name="productname" v-model="product.productname" required autocomplete="productname" autofocus>
                             </div>
 
-                            <div class="form-group col-md-4 mb-4">
+                            <div class="form-group col-md-6 mb-4">
                                 <label for="category_id" class="font-weight-bold">Product Category</label>
                                 <select v-if="category.length > 0" v-model="product.category_id" class="form-control" name="category_id" id="category_id" required>                                    
                                     <option v-for="cat in category" :key="cat.id" :value="cat.id">{{cat.categoryname}}</option>
@@ -28,12 +28,17 @@
                                 <input v-else type="text" class="form-control" value="No Data Found" disabled>
                             </div>
 
-                            <div class="form-group col-md-4 mb-4">
+                            <div class="form-group col-md-6 mb-4">
                                 <label for="quantity" class="font-weight-bold">Product Quantity</label>
                             <input id="quantity" type="number" class="form-control" name="quantity" v-model="product.quantity" required autocomplete="quantity" autofocus>
                             </div>
 
-                            <div class="form-group col-md-4 mb-4">
+                            <div class="form-group col-md-6 mb-4">
+                                <label for="lowestquantity" class="font-weight-bold">Alert me when product quantity is below</label>
+                            <input id="lowestquantity" type="number" class="form-control" name="lowestquantity" v-model="product.lowestquantity" required autocomplete="lowestquantity" autofocus>
+                            </div>
+
+                            <div class="form-group col-md-6 mb-4">
                                 <label for="price" class="font-weight-bold">Product Price</label>
                             <input id="price" type="number" class="form-control" name="price" v-model="product.price" required autocomplete="price" autofocus>
                             </div>
@@ -67,6 +72,7 @@ export default {
                 productname:'',
                 productdescription:'',
                 quantity:'',
+                lowestquantity:'',
                 category_id:'',
                 supplier_id:'',
                 price:'',
@@ -85,7 +91,7 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/api/product/add',this.product).then(response=>{
                 this.validationErrors = {}
-                this.$toast.success("Product addedd successfully", {
+                this.$toast.success("Product added successfully", {
                     position: "top"
                 })
             }).catch(({response})=>{
