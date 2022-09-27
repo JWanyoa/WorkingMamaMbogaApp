@@ -30,7 +30,7 @@
 
                             <div class="form-group col-md-4 mb-4">
                                 <label for="contact" class="font-weight-bold">Supplier Contact</label>
-                            <input id="contact" type="number" class="form-control" name="contact" v-model="supplier.contact" required autocomplete="contact" autofocus>
+                            <input id="contact" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "10" type="number" class="form-control" name="contact" v-model="supplier.contact" required autocomplete="contact" autofocus>
                             </div>
 
                             <div class="form-group col-md-4 mb-4">

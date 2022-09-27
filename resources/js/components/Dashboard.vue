@@ -69,10 +69,10 @@
             }
         },
         computed: {
-        ...mapGetters(["order","users","customer","product","category","users"])
+        ...mapGetters(["order","users","customer","product","category","users","productRestock"])
         },
         created(){
-         this.$store.dispatch("viewOrders","viewCustomers", "viewCategories","viewProducts", "viewUsers", "viewSuppliers",)
+         this.$store.dispatch("viewOrders","viewCustomers", "viewCategories","viewProducts", "viewUsers", "viewSuppliers","restockProducts")
         },
         methods:
         {

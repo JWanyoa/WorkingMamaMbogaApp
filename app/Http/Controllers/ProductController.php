@@ -15,6 +15,20 @@ class ProductController extends Controller
          $products = Product::all();
          return $products;
      }
+
+     public function getRestockMessage()
+     {
+        //  $products = Product::where('lowestquantity' ,'<',  'quantity')->get();
+        //  $products = Product::with('productname')->whereRaw('quantity <= lowestquantity')->get();
+        $products = Product::all();
+        $product =[];
+        foreach($products as $pro)
+        {
+            $lowestquantity = Product::where('id', $pro['id'])->value('lowestquantity');
+            $product = Product::where('quantity', '<', (int)$lowestquantity)->get();
+        }
+         return $product;
+     }
  
      /**
       * Create a new product instance

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('product_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete("NO ACTION");
+            $table->integer('sold')->default(0);
             $table->integer('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete("NO ACTION");
             $table->string('quantity');

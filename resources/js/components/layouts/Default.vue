@@ -162,7 +162,7 @@
     </div>
  </template>
  <script>
-    import {mapActions} from 'vuex'
+    import {mapActions,mapGetters} from 'vuex'
     
     export default {
         name:"default-layout",
@@ -171,6 +171,12 @@
                 user:this.$store.state.auth.user,
                 isActive:false
             }
+        },
+        computed: {
+        ...mapGetters(["productRestock"])
+        },
+        created(){
+         this.$store.dispatch("restockProducts")
         },
         methods:{
             ...mapActions({

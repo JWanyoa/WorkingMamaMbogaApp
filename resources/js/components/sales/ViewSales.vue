@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-body table-responsive">
                     
-                    <h3 class="text-center">Product Orders</h3>
+                    <h3 class="text-center">Product Sales</h3>
                     <table class="table table-bordered">
                       <div class="col-12" v-if="Object.keys(validationErrors).length > 0">
                                  <div class="alert alert-danger">
@@ -15,7 +15,7 @@
                              </div>
                         <thead>
                         <tr>
-                            <th>Order ID</th>
+                            <th>Sale ID</th>
                             <th>Product Name</th>
                             <th>Customer Name</th>
                             <th>Quantity Ordered</th>
@@ -25,41 +25,36 @@
                         </tr>
                         </thead>
                         <tbody v-if="sales.length>0">
-                            <!-- <tr v-for="sale in sales" :key="sale.id">
-                                <span v-for="ord in order" :key="ord.id">
-                                    <span v-if="sale.order_id == ord.id">
-                                        <td>{{ ord.id }}</td>
-                                        <td><span v-if="product.length > 0" v-for="prod in product" :key="prod.id"><span v-if="prod.id == ord.category_id">{{ prod.categoryname }}</span></span><span v-else>No Category</span></td>
-                                        <td><span v-for="prod in product" :key="prod.id"><span v-if="prod.id == ord.product_id">{{ prod.productname }}</span></span></td>
-                                        <td><span v-if="customer.length > 0"><span v-for="cust in customer" :key="cust.id"><span v-if="cust.id == ord.customer_id"><span v-for="user in users" :key="user.id"><span v-if="user.id == cust.user_id">{{user.firstname}} {{user.lastname}}</span></span></span></span></span></td>
-                                        <td>{{ ord.quantity }}</td>
-                                        <td>Kshs. {{ ord.price.toLocaleString('en-US') }}</td>
-                                        <td>Kshs. {{ (ord.price * ord.quantity).toLocaleString('en-US') }}</td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <router-link :to="{name: 'editsale', params: { id: ord.id }}" class="btn btn-primary">Edit
-                                                </router-link> 
-                                                <button type="submit" class="btn btn-danger" @click="deletesale(ord.id)">Delete</button>
-                                            </div>
-                                        </td>
-                                    </span>
-                                </span>
-                            </tr> -->
-                            <tr v-for="ord in order" :key="ord.id">
-                                <td>{{ ord.id }}</td>
-                                <td><span v-if="product.length > 0"><span v-for="prod in product" :key="prod.id"><span v-if="prod.id == ord.product_id">{{prod.productname}}</span></span></span></td>
-                                <td><span v-if="customer.length > 0"><span v-for="cust in customer" :key="cust.id"><span v-if="cust.id == ord.customer_id"><span v-for="user in users" :key="user.id"><span v-if="user.id == cust.user_id">{{user.firstname}} {{user.lastname}}</span></span></span></span></span></td>
-                                <td>{{ ord.quantity }}</td>
-                                <td>Kshs. {{ ord.price.toLocaleString('en-US') }}</td>
-                                <td>Kshs. {{ (ord.price * ord.quantity).toLocaleString('en-US') }}</td>
+                            <tr v-for="sale in sales" :key="sale.id">
+                                <td>{{sale.id}}</td>
+                                <td><span v-for="prod in product" :key="prod.id"><span v-if="prod.id == sale.product_id">{{prod.productname}}</span></span></td>
+                                <td><span v-if="customer.length > 0"><span v-for="cust in customer" :key="cust.id"><span v-if="cust.id == sale.customer_id"><span v-for="user in users" :key="user.id"><span v-if="user.id == cust.user_id">{{user.firstname}} {{user.lastname}}</span></span></span></span></span></td>
+                                <td>{{ sale.quantity }}</td>
+                                <td>Kshs. {{ sale.price.toLocaleString('en-US') }}</td>
+                                <td>Kshs. {{ (sale.price * sale.quantity).toLocaleString('en-US') }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                    <router-link :to="{name: 'editorder', params: { id: ord.id }}" class="btn btn-primary">Edit
-                                    </router-link>
-                                    <button class="btn btn-danger" @click="deletecategories(ord.id)">Delete</button>
+                                    <!-- <router-link :to="{name: 'editorder', params: { id: sale.id }}" class="btn btn-primary">Edit
+                                    </router-link> -->
+                                    <button class="btn btn-danger" @click="deletecategories(sale.id)">Delete</button>
                                     </div>
                                 </td>
                             </tr>
+                            <!-- <tr v-for="sale in order" :key="sale.id">
+                                <td>{{ sale.id }}</td>
+                                <td><span v-if="product.length > 0"><span v-for="prod in product" :key="prod.id"><span v-if="prod.id == sale.product_id">{{prod.productname}}</span></span></span></td>
+                                <td><span v-if="customer.length > 0"><span v-for="cust in customer" :key="cust.id"><span v-if="cust.id == sale.customer_id"><span v-for="user in users" :key="user.id"><span v-if="user.id == cust.user_id">{{user.firstname}} {{user.lastname}}</span></span></span></span></span></td>
+                                <td>{{ sale.quantity }}</td>
+                                <td>Kshs. {{ sale.price.toLocaleString('en-US') }}</td>
+                                <td>Kshs. {{ (sale.price * sale.quantity).toLocaleString('en-US') }}</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                    <router-link :to="{name: 'editorder', params: { id: sale.id }}" class="btn btn-primary">Edit
+                                    </router-link>
+                                    <button class="btn btn-danger" @click="deletecategories(sale.id)">Delete</button>
+                                    </div>
+                                </td>
+                            </tr> -->
                         </tbody>
                         <tbody v-else>
                             <tr>
@@ -83,7 +78,7 @@
         name: 'viewsales',
         data() {
             return {
-             ord:
+             sale:
              {
                 id:''
              },

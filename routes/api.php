@@ -41,6 +41,7 @@ Route::get('product', [ProductController::class, 'index']);
 Route::group(['prefix' => 'product'], function () {
     Route::post('add', [ProductController::class, 'create']);
     Route::get('edit/{id}', [ProductController::class, 'edit']);
+    Route::get('restock', [ProductController::class, 'getRestockMessage']);
     Route::put('update/{id}', [ProductController::class, 'update']);
     Route::delete('delete/{id}', [ProductController::class, 'delete']);
 });

@@ -27,7 +27,7 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-if="order.length>0">
                         <tr v-for="ord in order" :key="ord.id">
                             <td>{{ ord.id }}</td>
                             <!-- <td><span v-if="product.length > 0" v-for="prod in product" :key="prod.id"><span v-if="prod.id == ord.category_id">{{ prod.categoryname }}</span></span><span v-else>No Category</span></td> -->
@@ -57,6 +57,15 @@
                             </td>
                         </tr>
                         </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td colspan="8">
+                                <div class="alert alert-danger text-center">
+                                        No Data Found
+                                </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                        </form>
                    </div>
@@ -83,6 +92,9 @@ export default {
    {
        ...mapGetters(["order","customer","users","product"])
    },
+   created() {
+            this.$store.dispatch("viewOrders")
+        },
    methods:{
        async addsaless(){
            this.processing = true

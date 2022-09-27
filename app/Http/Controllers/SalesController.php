@@ -6,6 +6,7 @@ use \Response;
 use App\Models\Sales;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\SalesStoreRequest;
@@ -14,7 +15,12 @@ class SalesController extends Controller
      // all sales
      public function index()
      {
-         $sales = Sales::all();
+         $sale = Sales::all();
+         $sales = [];
+         foreach($sale as $sal)
+         {
+            $sales = Order::where('id', $sal['order_id'])->get();
+         }
          return $sales;
      }
  
@@ -31,7 +37,11 @@ class SalesController extends Controller
          ]);
          $quantity = Order::where('id', $request->order_id)->value('quantity');
          $product_id = Order::where('id', $request->order_id)->value('product_id');
+         $customer_id = Order::where('id', $request->order_id)->value('customer_id');
+         $frequency = Customer::where('id', $customer_id)->value('frequency_of_purchase');
          $initialproductquantity = Product::where('id', $product_id)->value('quantity');
+
+         $freq = $frequency + 1;
          if($initialproductquantity<0)
          {
             return response()->json('Product quantity is leess than 0');
@@ -45,7 +55,15 @@ class SalesController extends Controller
                 ->update([
                     'quantity' => $newquantity
                 ]);
-                if($updateproduct)
+                $updatecustomers = Customer::where('id', $customer_id)
+                ->update([
+                    'frequency_of_purchase' => $freq,
+                ]);
+                $updateOrder = Order::where('id', $request->order_id)
+                ->update([
+                    'sold' => 1
+                ]);
+                if($updateproduct && $updatecustomers && $updateOrder)
                 {
                     return response()->json('Sales successfully made and product database successfully updated');
                 }

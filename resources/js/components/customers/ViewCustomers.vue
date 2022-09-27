@@ -59,7 +59,8 @@
         ...mapGetters(["customer","users","customer","product"])
         },
         created() {
-            this.$store.dispatch("viewCustomers","viewUsers")
+            this.$store.dispatch("viewCustomers")
+            this.$store.dispatch("viewUsers")
         },
         methods: {
             deletecustomers(id) {

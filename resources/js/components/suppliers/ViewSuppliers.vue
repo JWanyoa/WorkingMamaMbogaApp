@@ -13,8 +13,6 @@
                             <th>Supplier Description</th>
                             <th>Supplier Phone Number</th>
                             <th>Supplier Address</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -27,8 +25,6 @@
                                 <td>{{ sup.supplierdescription }}</td>
                                 <td>+254{{ sup.contact }}</td>
                                 <td>{{ sup.address }}</td>
-                                <td>{{ sup.created_at }}</td>
-                                <td>{{ sup.updated_at }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <router-link :to="{name: 'editsupplier', params: { id: sup.id }}" class="btn btn-primary">Edit
