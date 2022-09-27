@@ -48,7 +48,7 @@
                 .then((res)=> {
                     this.product = res.data;
                     this.$toast.success("Category Edited successfully", {
-                    position: "top"
+                    position: "bottom-left",
                 })
                 })
                 .then((response) => {

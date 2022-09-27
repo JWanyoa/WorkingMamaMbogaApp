@@ -85,7 +85,7 @@ export default {
             await axios.post('/api/supplier/add',this.supplier).then(response=>{
                 this.validationErrors = {}
                 this.$toast.success("Supplier Details added successfully", {
-                        position: "top"
+                        position: "bottom-left",
                     })
                 document.getElementById("myForm").reset(); // This will clear that form
             }).catch(({response})=>{
@@ -94,7 +94,7 @@ export default {
                 }else{
                     this.validationErrors = {}
                     this.$toast.error(response.data.message, {
-                        position: "top",
+                        position: "bottom-left",
                         duration: 4000
                     })
                 }

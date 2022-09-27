@@ -16,7 +16,7 @@
                          <th>Actions</th>
                       </tr>
                    </thead>
-                   <tbody>
+                   <tbody v-if="order.length>0">
                       <tr v-for="ord in order" :key="ord.id">
                          <td>{{ ord.id }}</td>
                          <td><span v-if="product.length > 0"><span v-for="prod in product" :key="prod.id"><span v-if="prod.id == ord.product_id">{{prod.productname}}</span></span></span></td>
@@ -32,6 +32,15 @@
                          </td>
                       </tr>
                    </tbody>
+                   <tbody v-else>
+                     <tr>
+                        <td colspan="6">
+                           <div class="alert alert-danger text-center">
+                                 No Data Found
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
                 </table>
              </div>
           </div>

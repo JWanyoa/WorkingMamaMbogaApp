@@ -11,18 +11,16 @@
                          <th>ID</th>
                          <th>Title</th>
                          <th>Description</th>
-                         <th>Created At</th>
-                         <th>Updated At</th>
+                         <th>Date Added</th>
                          <th>Actions</th>
                       </tr>
                    </thead>
-                   <tbody>
+                   <tbody v-if="category.length>0">
                       <tr v-for="cat in category" :key="cat.id">
                          <td>{{ cat.id }}</td>
                          <td>{{ cat.categoryname }}</td>
                          <td>{{ cat.categorydescription }}</td>
                          <td>{{ cat.created_at }}</td>
-                         <td>{{ cat.updated_at }}</td>
                          <td>
                             <div class="btn-group" role="group">
                                <router-link :to="{name: 'editcategory', params: { id: cat.id }}" class="btn btn-primary">Edit
@@ -32,6 +30,15 @@
                          </td>
                       </tr>
                    </tbody>
+                   <tbody v-else>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="alert alert-danger text-center">
+                                        No Data Found
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                 </table>
              </div>
           </div>

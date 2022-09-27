@@ -23,7 +23,7 @@ export default{
             await axios.get('/sanctum/csrf-cookie')
             await axios.post(`/api/sales/add?order_id=${id}`).then(response=>{
                 this.$toast.success("Sales Data addedd successfully", {
-                    position: "top"
+                    position: "bottom-left",
                 })
                 commit('NEW_SALES', id);
             })

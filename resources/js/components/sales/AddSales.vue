@@ -90,7 +90,7 @@ export default {
            await axios.post('/api/sales/add',this.sales).then(response=>{
                this.validationErrors = {}
                this.$toast.success("Sales data added successfully", {
-                   position: "top"
+                   position: "bottom-left",
                })
            }).catch(({response})=>{
                if(response.status===422){
@@ -98,7 +98,7 @@ export default {
                }else{
                    this.validationErrors = {}
                    this.$toast.error(response.data.message, {
-                       position: "top",
+                       position: "bottom-left",
                        duration: 4000
                    })
                }

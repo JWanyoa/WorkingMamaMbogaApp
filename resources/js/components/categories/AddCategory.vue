@@ -58,7 +58,7 @@ export default {
             await axios.post('/api/category/add',this.category).then(response=>{
                 this.validationErrors = {}
                 this.$toast.success("Category added successfully", {
-                    position: "top"
+                    position: "bottom-left",
                 })
             }).catch(({response})=>{
                 if(response.status===422){
@@ -66,7 +66,7 @@ export default {
                 }else{
                     this.validationErrors = {}
                     this.$toast.error(response.data.message, {
-                        position: "top",
+                        position: "bottom-left",
                         duration: 4000
                     })
                 }

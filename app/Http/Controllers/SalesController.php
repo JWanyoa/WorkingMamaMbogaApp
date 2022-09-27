@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use \Response;
 use App\Models\Sales;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\SalesStoreRequest;
@@ -27,7 +29,32 @@ class SalesController extends Controller
          $sale = Sales::create([
             'order_id' => $request->order_id,
          ]);
-         return response()->json('Sales successfully made');
+         $quantity = Order::where('id', $request->order_id)->value('quantity');
+         $product_id = Order::where('id', $request->order_id)->value('product_id');
+         $initialproductquantity = Product::where('id', $product_id)->value('quantity');
+         if($initialproductquantity<0)
+         {
+            return response()->json('Product quantity is leess than 0');
+         }
+         else
+         {
+            $newquantity = $initialproductquantity - $quantity;
+            if($sale)
+            {
+                $updateproduct = Product::where('id', $product_id)
+                ->update([
+                    'quantity' => $newquantity
+                ]);
+                if($updateproduct)
+                {
+                    return response()->json('Sales successfully made and product database successfully updated');
+                }
+                else
+                {
+                    return response()->json('Error adding data');
+                }
+            }
+        }
      }
 
      // edit sales

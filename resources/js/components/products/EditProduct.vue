@@ -68,7 +68,7 @@
                 .then((response) => {
                     this.$router.push({name: 'viewproduct'});
                     this.$toast.success("Product Edited successfully", {
-                    position: "top"
+                    position: "bottom-left",
                 })
                 });
             }

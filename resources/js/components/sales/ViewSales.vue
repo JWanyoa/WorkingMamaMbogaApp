@@ -24,7 +24,7 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-if="sales.length>0">
                             <!-- <tr v-for="sale in sales" :key="sale.id">
                                 <span v-for="ord in order" :key="ord.id">
                                     <span v-if="sale.order_id == ord.id">
@@ -58,6 +58,15 @@
                                     </router-link>
                                     <button class="btn btn-danger" @click="deletecategories(ord.id)">Delete</button>
                                     </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td colspan="7">
+                                <div class="alert alert-danger text-center">
+                                        No Data Found
+                                </div>
                                 </td>
                             </tr>
                         </tbody>

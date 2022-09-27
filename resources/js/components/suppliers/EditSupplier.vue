@@ -66,7 +66,7 @@ import { mapGetters } from 'vuex'
                 this.$axios.put(`http://127.0.0.1:8000/api/supplier/update/${this.$route.params.id}`, this.supplier)
                 .then(response=>{
                     this.$toast.success("Supplier Details edited successfully", {
-                        position: "top"
+                        position: "bottom-left",
                     })
                     this.$router.push({name: 'dashboard'});
                 }).catch(({response})=>{
@@ -75,7 +75,7 @@ import { mapGetters } from 'vuex'
                     }else{
                         this.validationErrors = {}
                         this.$toast.error(response.data.message, {
-                            position: "top",
+                            position: "bottom-left",
                             duration: 4000
                         })
                     }

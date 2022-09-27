@@ -7,16 +7,17 @@
                     <h3 class="text-center">All Products in Stock</h3>
                     <div class="row mt-2 mb-4">
                         <div class="col-md-9 mx-auto">
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <div v-on="{[myEvent]: function() { alert('Hello world!') }}" class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <h4 class="alert-heading"><span class="fa fa-exclamation-circle"></span> &nbsp; Warning!!</h4>
                                 <hr>
                                 <span>
                                     <span v-for="pro in product" :key="pro.id">
-                                        <span v-if="pro.quantity<pro.lowestquantity">
+                                        <span v-if="pro.quantity <= pro.lowestquantity">
                                             <ul>
                                                 <li>Please add more <b class="font-weight-bold">{{pro.productname}}</b> in stock</li>
                                             </ul>
                                         </span>
+                                        <span v-else></span>
                                     </span>
                                 </span>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -31,10 +32,9 @@
                             <th>Product Category</th>
                             <th>Product Description</th>
                             <th>Quantity</th>
+                            <th>Lowest Limit</th>
                             <th>Price Per Unit</th>
                             <th>Total Sale Value</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -46,10 +46,9 @@
                             <td><span v-for="cat in category" :key="cat.id"><span v-if="cat.id == prod.category_id">{{ cat.categoryname }}</span></span></td>
                             <td>{{ prod.productdescription }}</td>
                             <td>{{ prod.quantity }}</td>
+                            <td>{{ prod.lowestquantity }}</td>
                             <td>Kshs. {{ prod.price.toLocaleString('en-US') }}</td>
                             <td>Kshs. {{ (prod.price * prod.quantity).toLocaleString('en-US') }}</td>
-                            <td>{{ prod.created_at }}</td>
-                            <td>{{ prod.updated_at }}</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <router-link :to="{name: 'editproduct', params: { id: prod.id }}" class="btn btn-primary">Edit

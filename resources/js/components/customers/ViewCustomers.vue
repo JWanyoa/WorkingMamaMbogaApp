@@ -16,7 +16,7 @@
                          <th>Actions</th>
                       </tr>
                    </thead>
-                   <tbody>
+                   <tbody v-if="customer.length>0">
                       <tr v-for="cust in customer" :key="cust.id">
                          <td>{{ cust.id }}</td>
                          <td><span v-for="user in users" :key="user.id"><span v-if="user.id == cust.user_id">{{user.firstname}} {{user.lastname}}</span></span></td>
@@ -32,6 +32,15 @@
                          </td>
                       </tr>
                    </tbody>
+                  <tbody v-else>
+                     <tr>
+                        <td colspan="6">
+                           <div class="alert alert-danger text-center">
+                                 No Data Found
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
                 </table>
              </div>
           </div>

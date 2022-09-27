@@ -88,7 +88,7 @@ export default {
             await axios.post('/api/order/add',this.order).then(response=>{
                 this.validationErrors = {}
                 this.$toast.success("Order added successfully", {
-                    position: "top",
+                    position: "bottom-left",
                     max:20
                 })
             }).catch(({response})=>{
@@ -97,7 +97,7 @@ export default {
                 }else{
                     this.validationErrors = {}
                     this.$toast.error(response.data.message, {
-                        position: "top",
+                        position: "bottom-left",
                         duration: 4000
                     })
                 }

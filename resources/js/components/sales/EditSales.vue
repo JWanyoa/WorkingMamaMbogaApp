@@ -67,7 +67,7 @@ import { mapGetters } from 'vuex'
                 .then(response=>{
                     this.$router.push({name: 'dashboard'});
                     this.$toast.success("Sales edited successfully", {
-                    position: "top"
+                    position: "bottom-left",
                 })
                 }).catch(({response})=>{
                     if(response.status===422){
@@ -75,7 +75,7 @@ import { mapGetters } from 'vuex'
                     }else{
                         this.validationErrors = {}
                         this.$toast.error(response.data.message, {
-                            position: "top",
+                            position: "bottom-left",
                             duration: 4000
                         })
                     }
